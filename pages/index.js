@@ -1,17 +1,27 @@
 import * as React from "react";
-import Rating from "@mui/material/Rating";
-import Stack from "@mui/material/Stack";
+import Container from "@mui/material/Container";
+import Box from "@mui/material/Box";
+
+//* CUSTOM COMPONENT //
+import Header from "/components/Header";
+import BrandLogoList from "/components/BrandLogoList";
+//* CUSTOM COMPONENT //
 
 export default function HalfRating() {
-  return (
-    <Stack spacing={1}>
-      <Rating name="half-rating" defaultValue={2.5} precision={0.5} />
-      <Rating
-        name="half-rating-read"
-        defaultValue={2.5}
-        precision={0.5}
-        readOnly
-      />
-    </Stack>
-  );
+   return (
+      <React.Fragment>
+         <Header />
+         <Container
+            maxWidth="xl"
+            sx={{
+               "&.MuiContainer-root": {
+                  paddingLeft: "0px",
+                  paddingRight: "0px",
+               },
+            }}
+         >
+            <BrandLogoList />
+         </Container>
+      </React.Fragment>
+   );
 }
