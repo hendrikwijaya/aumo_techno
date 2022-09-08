@@ -26,7 +26,7 @@ const BrandLogoList = (props) => {
          title: "Autonics",
       },
       {
-         img: "/aumo_techno_images/beckhoff.png",
+         img: "/aumo_techno_images/Beckhoff.png",
          title: "Beckhoff",
       },
       {
@@ -58,7 +58,7 @@ const BrandLogoList = (props) => {
          title: "Endress Hauser",
       },
       {
-         img: "/aumo_techno_images/Festo.png",
+         img: "/aumo_techno_images/FESTO.png",
          title: "Festo",
       },
       {
