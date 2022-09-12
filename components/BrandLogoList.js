@@ -6,6 +6,7 @@ import Paper from "@mui/material/Paper";
 import Card from "@mui/material/Card";
 import Divider from "@mui/material/Divider";
 import Chip from "@mui/material/Chip";
+import Carousel from "better-react-carousel";
 import { withContext } from "../context";
 
 const BrandLogoList = (props) => {
@@ -135,7 +136,7 @@ const BrandLogoList = (props) => {
          <Box
             sx={{
                width: "100%",
-               height: 450,
+               // height: 450,
                overflowY: "scroll",
                p: 1,
                "&::-webkit-scrollbar": {
@@ -153,7 +154,7 @@ const BrandLogoList = (props) => {
                },
             }}
          >
-            <ImageList
+            {/* <ImageList
                variant="standard"
                cols={
                   width == "xs" ? 2 : width == "sm" ? 3 : width == "md" ? 4 : 6
@@ -173,7 +174,7 @@ const BrandLogoList = (props) => {
                      }}
                   >
                      <ImageListItem>
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        eslint-disable-next-line @next/next/no-img-element
                         <img
                            src={`${item.img}`}
                            //   srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
@@ -184,7 +185,60 @@ const BrandLogoList = (props) => {
                      </ImageListItem>
                   </Card>
                ))}
-            </ImageList>
+            </ImageList> */}
+            <Carousel
+               cols={
+                  width == "xs"
+                     ? 1
+                     : width == "sm"
+                     ? 2
+                     : width == "md"
+                     ? 3
+                     : width == "lg"
+                     ? 4
+                     : 5
+               }
+               rows={1}
+               gap={10}
+               autoplay={3000}
+               loop
+               showDots
+            >
+               {itemData.map((item) => (
+                  <Carousel.Item key={item.img}>
+                     {/* <Card
+                        key={item.img}
+                        sx={{
+                           mt: 1,
+                           mb: 1,
+                           p: 1,
+                           display: "flex",
+                           justifyContent: "center",
+                           alignItems: "center",
+                        }}
+                     > */}
+                     <div
+                        style={{
+                           display: "flex",
+                           justifyContent: "center",
+                           alignItems: "center",
+                        }}
+                     >
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                           src={`${item.img}`}
+                           //   srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
+                           alt={item.title}
+                           width="200px"
+                           height="200px"
+                           loading="lazy"
+                           style={{ objectFit: "contain" }}
+                        />
+                     </div>
+                     {/* </Card> */}
+                  </Carousel.Item>
+               ))}
+            </Carousel>
          </Box>
       </Paper>
    );
