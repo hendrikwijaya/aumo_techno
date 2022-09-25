@@ -1,16 +1,31 @@
-import * as React from "react";
+import { Fragment, useEffect, useState } from "react";
 import Container from "@mui/material/Container";
-import Box from "@mui/material/Box";
+import fetch from "isomorphic-unfetch";
 
 //* CUSTOM COMPONENT //
 import Header from "/components/Header";
 import BrandLogoList from "/components/BrandLogoList";
-import ProductList from "/components/ProductList";
+import CategoryList from "/components/CategoryList";
 //* CUSTOM COMPONENT //
 
-export default function HalfRating() {
+export default function MainPage() {
+   const [data, setData] = useState([]);
+   const [category, setCategory] = useState([]);
+
+   useEffect(() => {
+      fetch("https://api.npoint.io/d31e78310907a6fcb077", {
+         method: "GET",
+         header: { "Content-Type": "application/json" },
+      })
+         .then((res) => res.json())
+         .then((data) => {
+            setData(data);
+            setCategory(data.category);
+         });
+   }, []);
+
    return (
-      <React.Fragment>
+      <Fragment>
          <Header />
          <Container
             maxWidth="xl"
@@ -21,9 +36,9 @@ export default function HalfRating() {
                },
             }}
          >
-            <ProductList />
             <BrandLogoList />
+            <CategoryList categoryData={category} />
          </Container>
-      </React.Fragment>
+      </Fragment>
    );
 }

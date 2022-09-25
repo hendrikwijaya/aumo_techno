@@ -137,8 +137,8 @@ const BrandLogoList = (props) => {
             sx={{
                width: "100%",
                // height: 450,
-               overflowY: "scroll",
-               p: 1,
+               overflowY: "auto",
+               p: 2,
                "&::-webkit-scrollbar": {
                   width: "10px",
                },
