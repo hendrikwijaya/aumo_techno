@@ -29,14 +29,14 @@ export default function CategoryCard(props) {
    const tooltipTitle = () => (
       <div>
          <Typography
-            variant="h5"
+            variant="h6"
             gutterBottom
          >
             {category.Name}
          </Typography>
          <Typography variant="body2">{category.description}</Typography>
          <ul>
-            {category.component != undefined &&
+            {category.components != undefined &&
                category.components.split(",").map((item, index) => (
                   <li key={index}>
                      <Typography variant="body2">

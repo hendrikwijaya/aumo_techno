@@ -6,11 +6,13 @@ import fetch from "isomorphic-unfetch";
 import Header from "/components/Header";
 import BrandLogoList from "/components/BrandLogoList";
 import CategoryList from "/components/CategoryList";
+import WhatsappButton from "/components/WhatsappButton";
 //* CUSTOM COMPONENT //
 
 export default function MainPage() {
    const [data, setData] = useState([]);
    const [category, setCategory] = useState([]);
+   const [isLoading, setIsLoading] = useState(true);
 
    useEffect(() => {
       fetch("https://api.npoint.io/d31e78310907a6fcb077", {
@@ -21,6 +23,7 @@ export default function MainPage() {
          .then((data) => {
             setData(data);
             setCategory(data.category);
+            setIsLoading(false);
          });
    }, []);
 
@@ -37,7 +40,11 @@ export default function MainPage() {
             }}
          >
             <BrandLogoList />
-            <CategoryList categoryData={category} />
+            <CategoryList
+               categoryData={category}
+               isLoading={isLoading}
+            />
+            <WhatsappButton />
          </Container>
       </Fragment>
    );

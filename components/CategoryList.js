@@ -13,9 +13,10 @@ import { withContext } from "../context";
 import ComponentCard from "./ComponentCard";
 import ComponentCard2 from "./ComponentCard2";
 import CategoryCard from "./CategoryCard";
+import CustomProgress from "./CustomProgress";
 
 const CategoryList = (props) => {
-   const { useWidth, categoryData } = props;
+   const { useWidth, categoryData, isLoading } = props;
    const width = useWidth();
 
    return (
@@ -52,31 +53,35 @@ const CategoryList = (props) => {
                },
             }}
          >
-            <Grid
-               container
-               spacing={1}
-            >
-               {/* <Grid xs={12}>
+            {isLoading == true ? (
+               <CustomProgress parentHeight="450px" />
+            ) : (
+               <Grid
+                  container
+                  spacing={1}
+               >
+                  {/* <Grid xs={12}>
                   <ComponentCard />
                </Grid>
                <Grid xs={12}>
                   <ComponentCard />
                </Grid> */}
-               {categoryData.map((category, index) => (
-                  <Grid
-                     xs={6}
-                     sm={4}
-                     md={3}
-                     lg={3}
-                     key={index}
-                  >
-                     <CategoryCard
-                        width={width}
-                        category={category}
-                     />
-                  </Grid>
-               ))}
-            </Grid>
+                  {categoryData.map((category, index) => (
+                     <Grid
+                        xs={6}
+                        sm={4}
+                        md={3}
+                        lg={3}
+                        key={index}
+                     >
+                        <CategoryCard
+                           width={width}
+                           category={category}
+                        />
+                     </Grid>
+                  ))}
+               </Grid>
+            )}
          </Box>
       </Paper>
    );

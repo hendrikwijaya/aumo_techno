@@ -15,14 +15,18 @@ import { withContext } from "../context";
 import ComponentCard from "./ComponentCard";
 import ComponentCard2 from "./ComponentCard2";
 import ProductDescription from "./ProductDescription";
+import CustomProgress from "./CustomProgress";
 
 const SubCategoryList = (props) => {
-   const { useWidth, subCategoryData, selectedCategory } = props;
+   const { useWidth, subCategoryData, selectedCategory, isLoading } = props;
    const width = useWidth();
 
    return (
       <Fragment>
-         <ProductDescription selectedCategory={selectedCategory} />
+         <ProductDescription
+            selectedCategory={selectedCategory}
+            isLoading={isLoading}
+         />
          <Paper
             elevation={12}
             sx={{ m: 2 }}
@@ -56,32 +60,36 @@ const SubCategoryList = (props) => {
                   },
                }}
             >
-               <Grid
-                  container
-                  spacing={1}
-               >
-                  {/* <Grid xs={12}>
+               {isLoading == true ? (
+                  <CustomProgress parentHeight="450px" />
+               ) : (
+                  <Grid
+                     container
+                     spacing={1}
+                  >
+                     {/* <Grid xs={12}>
                   <ComponentCard />
                </Grid>
                <Grid xs={12}>
                   <ComponentCard />
                </Grid> */}
-                  {subCategoryData != undefined &&
-                     subCategoryData.map((subCategory, index) => (
-                        <Grid
-                           xs={12}
-                           sm={4}
-                           md={3}
-                           lg={3}
-                           key={index}
-                        >
-                           <ComponentCard2
-                              width={width}
-                              subCategory={subCategory}
-                           />
-                        </Grid>
-                     ))}
-               </Grid>
+                     {subCategoryData != undefined &&
+                        subCategoryData.map((subCategory, index) => (
+                           <Grid
+                              xs={12}
+                              sm={4}
+                              md={3}
+                              lg={3}
+                              key={index}
+                           >
+                              <ComponentCard2
+                                 width={width}
+                                 subCategory={subCategory}
+                              />
+                           </Grid>
+                        ))}
+                  </Grid>
+               )}
             </Box>
          </Paper>
       </Fragment>

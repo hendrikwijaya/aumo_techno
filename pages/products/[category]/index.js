@@ -16,6 +16,7 @@ import SubCategoryList from "/components/SubCategoryList";
 const ProductByCategory = () => {
    const router = useRouter();
    const categoryId = router.query.category;
+   const [isLoading, setIsLoading] = useState(true);
    const [data, setData] = useState({});
    const [category, setCategory] = useState([]);
    const [subCategoryData, setSubCategoryData] = useState([]);
@@ -23,12 +24,14 @@ const ProductByCategory = () => {
 
    useEffect(() => {
       if (categoryId != undefined) {
+         setIsLoading(true);
          fetch("https://api.npoint.io/d31e78310907a6fcb077", {
             method: "GET",
             header: { "Content-Type": "application/json" },
          })
             .then((res) => res.json())
             .then((data) => {
+               setIsLoading(false);
                setData(data);
                setCategory(data.category);
                setSubCategoryData(data[categoryId]);
@@ -58,12 +61,17 @@ const ProductByCategory = () => {
                <Link href="/">
                   <a>Home</a>
                </Link>
-               <Typography color="text.primary">Pneumatic</Typography>
+               <Typography color="text.primary">
+                  {categoryId != undefined
+                     ? categoryId.charAt(0).toUpperCase() + categoryId.slice(1)
+                     : "-"}
+               </Typography>
             </Breadcrumbs>
             {/* <CategoryList categoryData={category} /> */}
             <SubCategoryList
                subCategoryData={subCategoryData}
                selectedCategory={selectedCategory}
+               isLoading={isLoading}
             />
          </Container>
       </Fragment>

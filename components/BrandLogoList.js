@@ -35,7 +35,7 @@ const BrandLogoList = (props) => {
          title: "Belimo",
       },
       {
-         img: "/aumo_techno_images/Bray.png",
+         img: "/aumo_techno_images/Bray.svg",
          title: "Bray",
       },
       {
@@ -47,7 +47,7 @@ const BrandLogoList = (props) => {
          title: "Cla-Val",
       },
       {
-         img: "/aumo_techno_images/Cummins.png",
+         img: "/aumo_techno_images/Cummins.jpg",
          title: "Cummins",
       },
       {
@@ -91,7 +91,7 @@ const BrandLogoList = (props) => {
          title: "KSB",
       },
       {
-         img: "/aumo_techno_images/Leroy_Somer.png",
+         img: "/aumo_techno_images/Leroy_Somer.jpg",
          title: "Leroy Somer",
       },
       {

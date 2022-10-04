@@ -1,4 +1,4 @@
-import * as React from "react";
+import { useRef, useState, useEffect, useLayoutEffect } from "react";
 import { styled } from "@mui/material/styles";
 import Card from "@mui/material/Card";
 import Box from "@mui/material/Box";
@@ -14,15 +14,29 @@ import { LightTooltip } from "./CustomTooltip";
 
 const ComponentCard = (props) => {
    const { width, subCategory } = props;
+   const cardHeaderRef = useRef(null);
+   const [titleWidth, setTitleWidth] = useState(0);
+
+   useEffect(() => {
+      setTitleWidth(cardHeaderRef.current.offsetWidth - 45);
+   }, []);
 
    const tooltipTitle = () => (
       <div>
-         <Typography variant="h5">{subCategory.name}</Typography>
+         <Typography
+            variant="h6"
+            sx={{ lineHeight: 1, pb: 1 }}
+         >
+            {subCategory.name}
+         </Typography>
          <Typography
             variant="body2"
             gutterBottom
          >
-            BRAND: {subCategory.brand.toString().toUpperCase()}{" "}
+            BRAND:{" "}
+            {subCategory.brand != undefined
+               ? subCategory.brand.toString().toUpperCase()
+               : "-"}{" "}
          </Typography>
          <Typography variant="body2">{subCategory.description}</Typography>
          {/* <ul>
@@ -43,9 +57,13 @@ const ComponentCard = (props) => {
             title={
                <Typography
                   variant="h6"
-                  sx={{ lineHeight: 1 }}
+                  sx={{
+                     lineHeight: 1,
+                     width: titleWidth,
+                  }}
+                  noWrap
                >
-                  {subCategory.name}
+                  {subCategory.name != undefined ? subCategory.name : "-"}
                </Typography>
             }
             subheader={
@@ -53,10 +71,14 @@ const ComponentCard = (props) => {
                   variant="caption"
                   sx={{ color: "#808080", fontSize: 9 }}
                >
-                  BRAND: {subCategory.brand.toString().toUpperCase()}
+                  BRAND:{" "}
+                  {subCategory.brand != undefined
+                     ? subCategory.brand.toString().toUpperCase()
+                     : "-"}
                </Typography>
             }
             sx={{ p: 1 }}
+            ref={cardHeaderRef}
             action={
                <LightTooltip
                   title={tooltipTitle()}
@@ -73,8 +95,7 @@ const ComponentCard = (props) => {
          <CardMedia
             component="img"
             height="130"
-            image={subCategory.image}
-            alt="green iguana"
+            image={subCategory.image != undefined ? subCategory.image : "/"}
             sx={{ objectFit: "contain", p: 1 }}
          />
          <CardContent>
@@ -99,7 +120,9 @@ const ComponentCard = (props) => {
                        }
                }
             >
-               {subCategory.description}
+               {subCategory.description != undefined
+                  ? subCategory.description
+                  : "-"}
             </Typography>
          </CardContent>
       </Card>

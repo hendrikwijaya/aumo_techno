@@ -22,19 +22,21 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
+import { useRouter } from "next/router";
 
 import Image from "next/image";
 import AumoTechnoIcon from "./AumoTechnoIcon";
 
 import { withContext } from "../context";
 
-const pages = ["Products", "Pricing", "Blog"];
+const pages = [{ title: "About Us", link: "/aboutus" }];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 const ResponsiveAppBar = (props) => {
    const [anchorElNav, setAnchorElNav] = React.useState(null);
    const [anchorElUser, setAnchorElUser] = React.useState(null);
    const [drawerState, setDrawerState] = React.useState(false);
+   const router = useRouter();
 
    //* OPEN NAV MENU //
    const handleOpenNavMenu = (event) => {
@@ -73,30 +75,23 @@ const ResponsiveAppBar = (props) => {
          sx={{ width: 250 }}
       >
          <List>
-            <ListItem disablePadding>
-               <ListItemButton>
-                  <ListItemIcon>
-                     <InboxIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Product" />
-               </ListItemButton>
-            </ListItem>
-            <ListItem disablePadding>
-               <ListItemButton>
-                  <ListItemIcon>
-                     <InboxIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Pricing" />
-               </ListItemButton>
-            </ListItem>
-            <ListItem disablePadding>
-               <ListItemButton>
-                  <ListItemIcon>
-                     <InboxIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Blog" />
-               </ListItemButton>
-            </ListItem>
+            {pages.map((item, index) => (
+               <ListItem
+                  disablePadding
+                  key={index}
+               >
+                  <ListItemButton
+                     onClick={() => {
+                        router.push(item.link);
+                     }}
+                  >
+                     <ListItemIcon>
+                        <InboxIcon />
+                     </ListItemIcon>
+                     <ListItemText primary={item.title} />
+                  </ListItemButton>
+               </ListItem>
+            ))}
          </List>
       </Box>
    );
@@ -214,13 +209,17 @@ const ResponsiveAppBar = (props) => {
             AUMO TECHNO
           </Typography> */}
                <Box sx={{ display: { xs: "none", sm: "flex" } }}>
-                  {pages.map((page) => (
+                  {pages.map((item, index) => (
                      <Button
-                        key={page}
-                        onClick={handleCloseNavMenu}
-                        sx={{ my: 2, color: "black", display: "block" }}
+                        key={index}
+                        onClick={() => {
+                           router.push(item.link);
+                        }}
+                        sx={{ my: 2, display: "block" }}
+                        variant="contained"
+                        color="secondary"
                      >
-                        {page}
+                        {item.title}
                      </Button>
                   ))}
                </Box>
