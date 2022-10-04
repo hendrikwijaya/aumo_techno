@@ -47,7 +47,7 @@ const BrandLogoList = (props) => {
          title: "Cla-Val",
       },
       {
-         img: "/aumo_techno_images/Cummins.jpg",
+         img: "/aumo_techno_images/Cumminns.jpg",
          title: "Cummins",
       },
       {
