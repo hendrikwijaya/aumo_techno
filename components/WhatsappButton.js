@@ -8,7 +8,7 @@ import PersonIcon from "@mui/icons-material/Person";
 import SaveIcon from "@mui/icons-material/Save";
 import PrintIcon from "@mui/icons-material/Print";
 import ShareIcon from "@mui/icons-material/Share";
-import WhatsappIcon from "@mui/icons-material/Whatsapp";
+import WhatsappIcon from "@mui/icons-material/WhatsApp";
 import KeyboardDoubleArrowUpIcon from "@mui/icons-material/KeyboardDoubleArrowUp";
 
 const actions = [
