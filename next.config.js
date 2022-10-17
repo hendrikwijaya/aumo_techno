@@ -10,6 +10,11 @@ const nextConfig = {
 
       return config;
    },
+   experimental: {
+      esmExternals: "loose", // second add this experimental flag to the config
+   },
 };
 
-module.exports = nextConfig;
+const withTM = require("next-transpile-modules")(["react-d3-speedometer"]);
+
+module.exports = withTM({ ...nextConfig });

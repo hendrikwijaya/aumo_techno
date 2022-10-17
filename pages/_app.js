@@ -3,13 +3,16 @@ import { Fragment } from "react";
 import { ThemeProvider, useTheme, createTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { Provider } from "../context";
-import { lightGreen } from "@mui/material/colors";
+import { blueGrey, indigo } from "@mui/material/colors";
 
 function MyApp({ Component, pageProps }) {
    const theme = createTheme({
       palette: {
          primary: {
-            main: lightGreen[300],
+            main: blueGrey[300],
+         },
+         secondary: {
+            main: indigo[900],
          },
       },
    });

@@ -67,7 +67,7 @@ export default function CategoryCard(props) {
             action={
                <LightTooltip
                   title={tooltipTitle()}
-                  placement="right-start"
+                  placement="top-start"
                   enterTouchDelay={100}
                   arrow
                >

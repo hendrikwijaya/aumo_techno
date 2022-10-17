@@ -12,14 +12,13 @@ import WhatsappIcon from "@mui/icons-material/WhatsApp";
 import KeyboardDoubleArrowUpIcon from "@mui/icons-material/KeyboardDoubleArrowUp";
 
 const actions = [
-   { icon: <WhatsappIcon />, name: "Budhi" },
-   { icon: <WhatsappIcon />, name: "Hendrik" },
+   { icon: <WhatsappIcon />, name: "Budhi", waNo: "6281211069246" },
 ];
 
 export default function WhatsappButton() {
    const [backdropOpen, setBackdropOpen] = useState(false);
 
-   const toggleBackdrop = (type) => (event) => {
+   const toggleBackdrop = (type, waNo) => (event) => {
       if (type == "open") {
          setBackdropOpen(true);
       }
@@ -31,7 +30,7 @@ export default function WhatsappButton() {
       if (type == "clickClose") {
          setBackdropOpen(false);
 
-         window.open("https://www.google.com", "_blank");
+         window.open(`https://wa.me/${waNo}`, "_blank");
       }
    };
    return (
@@ -57,7 +56,7 @@ export default function WhatsappButton() {
                   icon={action.icon}
                   tooltipTitle={action.name}
                   tooltipOpen
-                  onClick={toggleBackdrop("clickClose")}
+                  onClick={toggleBackdrop("clickClose", action.waNo)}
                />
             ))}
          </SpeedDial>
