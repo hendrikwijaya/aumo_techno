@@ -19,9 +19,11 @@ import Typography from "@mui/material/Typography";
 import Avatar from "@mui/material/Avatar";
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
+import dynamic from "next/dynamic";
 
 import SpeedIcon from "@mui/icons-material/Speed";
 import Speedometer1 from "./Speedometer1";
+// import IndustrialProcessChart from "./IndustrialProcessChart";
 
 const drawerWidth = 240;
 
@@ -32,6 +34,13 @@ function DashboardHeader(props) {
    const handleDrawerToggle = () => {
       setMobileOpen(!mobileOpen);
    };
+
+   const IndustrialProcessChart = dynamic(
+      () => import("./IndustrialProcessChart"),
+      {
+         ssr: false,
+      }
+   );
 
    const drawer = (
       <div>
@@ -200,6 +209,13 @@ function DashboardHeader(props) {
                         ]}
                      />
                   </Box>
+               </Grid>
+               <Grid
+                  item
+                  xs={12}
+                  sx={{ border: "1px solid black" }}
+               >
+                  <IndustrialProcessChart />
                </Grid>
             </Grid>
          </Box>

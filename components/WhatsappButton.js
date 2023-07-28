@@ -12,7 +12,7 @@ import WhatsappIcon from "@mui/icons-material/WhatsApp";
 import KeyboardDoubleArrowUpIcon from "@mui/icons-material/KeyboardDoubleArrowUp";
 
 const actions = [
-   { icon: <WhatsappIcon />, name: "Budhi", waNo: "6281211069246" },
+   { icon: <WhatsappIcon />, name: "Aumo", waNo: "6281190008765" },
 ];
 
 export default function WhatsappButton() {
